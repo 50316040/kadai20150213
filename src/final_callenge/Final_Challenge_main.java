@@ -8,7 +8,7 @@ package final_callenge;
  		Controller_for_FC controller = new Controller_for_FC();
 		Frame_for_FC frame = new Frame_for_FC(controller);
 		
-		frame.setBounds(5,5,420,455);
+		frame.setBounds(5,5,350,455);
 		frame.setVisible(true);
  	} 
  

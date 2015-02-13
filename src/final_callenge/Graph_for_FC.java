@@ -3,8 +3,10 @@ package final_callenge;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -12,11 +14,14 @@ import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.SwingUtilities;
+
 import org.jfree.chart.ChartColor;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -75,6 +80,16 @@ public class Graph_for_FC extends Frame implements ActionListener, WindowListene
 										false);
 		ChartPanel cpanel = new ChartPanel(chart);
 		
+		CategoryPlot cPlot = chart.getCategoryPlot();
+		/* 横軸の設定 */
+		CategoryAxis domainAxis = cPlot.getDomainAxis();
+		domainAxis.setCategoryMargin(0.01);
+		domainAxis.setLowerMargin(0.01);
+		domainAxis.setUpperMargin(0.01);
+
+
+		
+		
 		//バーの幅変更
 		final CategoryPlot plot = chart.getCategoryPlot();
         final BarRenderer renderer = (BarRenderer)plot.getRenderer();
@@ -101,7 +116,10 @@ public class Graph_for_FC extends Frame implements ActionListener, WindowListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 		
-		System.exit(0);
+		//グラフフレームのみ閉じる
+		Component c = (Component)e.getSource();
+		Window w = SwingUtilities.getWindowAncestor(c);
+		w.dispose();
 	}
 	
 	@Override
@@ -114,6 +132,7 @@ public class Graph_for_FC extends Frame implements ActionListener, WindowListene
 	public void windowClosing(WindowEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 		
+		//アプリケーション終了
 		System.exit(0);
 	}
 

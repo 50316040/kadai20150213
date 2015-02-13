@@ -15,11 +15,14 @@ import java.awt.event.WindowListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.swing.JFrame;
+
 public class Frame_for_FC extends Frame implements ActionListener,WindowListener,KeyListener{
 
 	private Button list = new Button("リスト表示");
-	private TextArea numlist = new TextArea("",20, 30);
 	private Button graph = new Button("グラフ表示");
+	private Button cls = new Button("閉じる");
+	private TextArea numlist = new TextArea("",20, 30);
 	private Label com = new Label("２０１５年トヨタ乗用車販売台数");
 	
 	public Frame_for_FC(Controller_for_FC controller) {
@@ -39,13 +42,15 @@ public class Frame_for_FC extends Frame implements ActionListener,WindowListener
 		
 		//フレームに空欄やボタン等を配置
 		add(list);		//（リスト表示ボタン）
-		add(com);			//(コメント)
+		add(com);		//(コメント)
 		add(numlist);	//(リスト枠）
 		add(graph);	//(グラフ表示ボタン）
+		add(cls);		//(閉じるボタン）
 		
 		//ボタンに計算機能を追加(actionPerformedを呼び出し）
 		list.addActionListener(this);
 		graph.addActionListener(this);
+		cls.addActionListener(this);
 		
 	}
 
@@ -53,12 +58,15 @@ public class Frame_for_FC extends Frame implements ActionListener,WindowListener
 	public void actionPerformed(ActionEvent e) {
 		// TODO 自動生成されたメソッド・スタブ
 		
-		if(e.getSource() == list){   //リストボタンが押されたとき
+		if(e.getSource() == list){   //リストのボタンが押されたとき
 			dbconsole();
 			
-		}else{     //グラフのボタンが押されたとき
+		}else if (e.getSource() == graph){     //グラフのボタンが押されたとき
 			bargraph();
 			
+		}else{		//閉じるのボタンが押されたとき
+			//アプリケーション終了
+			System.exit(0);
 		}
 	}
 	

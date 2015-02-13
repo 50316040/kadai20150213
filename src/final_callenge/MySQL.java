@@ -52,7 +52,7 @@ public class MySQL {
 	 
 	public ResultSet selectAll(){ 
 		 
-		String sql = "SELECT * FROM for_FC"; 
+		String sql = "SELECT * FROM For_FC"; 
 		ResultSet rs = null; 
 		try { 
 			rs = stmt.executeQuery (sql); 
